@@ -1,14 +1,23 @@
 import React from "react";
 
-const List = ({ todo }) => {
+const List = ({ todos, setList }) => {
   return (
-    <div>
-      <ul>
-        {todo.map((t, i) => (
-          <li key={i}>{t}</li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {todos.map((todo) => (
+        <li
+          className="flex justify-between border-2 pl-2 mb-4 text-white font-mono "
+          key={todo.id}
+        >
+          {todo.completed ? "Complete" : todo.text}
+          <button
+            onClick={() => setList(todos.filter((el) => el.id !== todo.id))}
+            className="bg-black px-2"
+          >
+            x
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 };
 
