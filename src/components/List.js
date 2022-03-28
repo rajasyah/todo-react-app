@@ -1,6 +1,7 @@
 import React from "react";
 
 const List = ({ todos, setList }) => {
+  const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
   return (
     <ul>
       {todos.map((todo) => (
@@ -10,7 +11,7 @@ const List = ({ todos, setList }) => {
           }  border-2 pl-2 mb-4 rounded-sm text-white font-mono`}
           key={todo.id}
         >
-          {todo.text}
+          {capitalize(todo.text)}
           <div className="">
             <button
               onClick={() =>
@@ -31,7 +32,12 @@ const List = ({ todos, setList }) => {
               &#10003;
             </button>
             <button
-              onClick={() => setList(todos.filter((el) => el.id !== todo.id))}
+              onClick={() => {
+                const decon = window.confirm("are you sure ?...");
+                if (decon === true) {
+                  setList(todos.filter((el) => el.id !== todo.id));
+                }
+              }}
               className="bg-red-600 px-2"
             >
               &#9747;
