@@ -23,7 +23,7 @@ const TodoList = () => {
   };
 
   return (
-    <div className="h-3/4 w-1/4 bg-orange-800 p-5 shadow-amber-900 shadow-lg rounded-sm">
+    <div className="h-3/4 w-4/4 sm:w-3/4 md:w-2/4 bg-orange-800 p-5 shadow-amber-900 shadow-lg rounded-lg overflow-auto">
       <Form
         handleSubmit={handleSubmit}
         handleChange={handleChange}

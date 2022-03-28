@@ -5,14 +5,12 @@ const List = ({ todos, setList }) => {
     <ul>
       {todos.map((todo) => (
         <li
-          className="flex justify-between bg-black border-2 pl-2 mb-4 text-white font-mono "
+          className={`flex justify-between ${
+            todo.completed ? "bg-green-900 line-through" : "bg-black"
+          }  border-2 pl-2 mb-4 rounded-sm text-white font-mono`}
           key={todo.id}
         >
-          {todo.completed ? (
-            <p className="line-through">{todo.text}</p>
-          ) : (
-            todo.text
-          )}
+          {todo.text}
           <div className="">
             <button
               onClick={() =>
