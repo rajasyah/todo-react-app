@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const List = ({ todos, setList }) => {
   const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
@@ -33,10 +34,20 @@ const List = ({ todos, setList }) => {
             </button>
             <button
               onClick={() => {
-                const decon = window.confirm("are you sure ?...");
-                if (decon === true) {
-                  setList(todos.filter((el) => el.id !== todo.id));
-                }
+                Swal.fire({
+                  title: "Do you want to delete todo ?",
+                  showDenyButton: true,
+                  confirmButtonText: "Delete",
+                  denyButtonText: `Don't delete`,
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Delete!", "", "success");
+                    setList(todos.filter((el) => el.id !== todo.id));
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not delete", "", "info");
+                  }
+                });
               }}
               className="bg-red-600 px-2"
             >
